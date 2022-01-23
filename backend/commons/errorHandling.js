@@ -17,7 +17,7 @@ const uniqueMessage = error => {
     return output;
 }
 
-lozzz
+lozzz vaicaloz
 
 const errorHandler = error => {
     let message = ""
