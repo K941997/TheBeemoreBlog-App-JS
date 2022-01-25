@@ -159,3 +159,12 @@
     + Vào F12 -> Components -> Context.Provider
 
 10. writePage (thêm) -> SinglePagePost (sửa + xóa) -> Thêm Comment
+
+11. Heroku:
+- Change to up Heroku: 
++ .env: NODE_ENV = development
++ backend index.js: if NODE_ENV === production
++ frontend localhost:3000 -> "OK"
++ backend localhost:5000 -> "Api is running when add in backend index.js"
++ change .env: NODE_ENV = production
++ backend localhost:5000 -> frontend but "lỗi t.map is not function"
