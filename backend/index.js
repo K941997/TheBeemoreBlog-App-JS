@@ -91,19 +91,17 @@ const upload = multer({ storage: storage });
 // });
 
 
-//heroku:
-app.use('/', express.static(path.join(__dirname, 'dist')))
 
-//Config for only development of User npm run start:
-if(process.env.NODE_ENV === "development"){
-    app.use(cors({
-        origin: process.env.CLIENT_URL
-    }))
+// //Config for only development of User npm run start:
+// if(process.env.NODE_ENV === "development"){
+//     app.use(cors({
+//         origin: process.env.CLIENT_URL
+//     }))
 
-    app.use(morgan('dev'));
-    //Morgan give info each request
-    //Cors allow to deal with React for localhost:3000 without any problem
-}
+//     app.use(morgan('dev'));
+//     //Morgan give info each request
+//     //Cors allow to deal with React for localhost:3000 without any problem
+// }
 
 
 
@@ -119,6 +117,20 @@ app.use ("/api/posts", postRoutes);
 app.use ("/api/categories", categoryRoutes);
 app.use ("/api/comments", commentRoutes);
 
+
+//heroku:
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, '/frontend/beemore/build')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../frontend/beemore', 'build', 'index.html'));
+
+    })
+} else {
+    app.get('/', (req, res) => {
+        res.send("Api running")
+    })
+}
 
 //Localhost:5000:
 app.listen(process.env.PORT, () => {

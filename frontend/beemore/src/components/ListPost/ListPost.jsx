@@ -2,6 +2,8 @@ import Post from "../Post/Post";
 import React from 'react'
 
 export default function ListPost({posts}) {
+  if(!posts) return 'no data';
+  if (!Array.isArray(posts)) return 'results are not array'
   return (
     <>
       <section class="text-gray-600 body-font" >
@@ -9,9 +11,9 @@ export default function ListPost({posts}) {
         <h2 class="text-2xl font-extrabold text-gray-700">BLOGS</h2>
           <div class="flex flex-wrap ">
           
-            {posts.map((p) => (
+            {posts.map((p) =>(
                 <Post post={p}></Post>
-            ))}
+            )  )}
           </div>
 
         </div>
